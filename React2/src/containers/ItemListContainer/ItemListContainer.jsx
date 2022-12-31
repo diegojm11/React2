@@ -1,43 +1,85 @@
 import {useState, useEffect} from 'react'
 import {  useParams } from 'react-router-dom'
-import ItemList from '../../components/IitemList/ItemList'
+import { collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where } from 'firebase/firestore'
+import ItemList from '../../components/ItemList/ItemList'
+import Loading from '../../components/Loading/Loading'
 import { gFetch } from '../../helpers/gFetch'
 
 
-const ItemListContainer = ( { saludo = 'saludo por defecto' } ) => { 
-    const [ products, setProduct ] = useState([])
+// acciones  api -> resultado (asincrónico)
+
+
+
+const ItemListContainer = ( { saludo = 'saludo por defecto' } ) => { // componente 
+    
+    const [bool, setBool] = useState(true)
+    const [ products, setProducts ] = useState([])
+
+    const [ product, setProduct ] = useState({})
+
     const [loading, setLoading] = useState(true)
 
     const { id } = useParams()
 
-    console.log(id)
+    console.log('itemListContainer')
     
     useEffect(()=>{
-        if (id) {
-            gFetch()
-            .then(data => setProduct(data.filter(prod => prod.categoria === id)))
-            .catch(err => console.log(err))
-            .finally(()=> setLoading(false))      
-            
-        } else {
-            gFetch()
-            .then(data => setProduct(data))
-            .catch(err => console.log(err))
-            .finally(()=> setLoading(false))            
-        }
+        const db = getFirestore()
+        const queryCollection = collection(db, 'productos')
 
-        
-        
+
+        if (id) {
+
+            const queryFiltrada =  query(queryCollection, where('categoria','==', id), where('isActive', '==', true))
+
+            getDocs(queryFiltrada)
+            .then(data => setProducts( data.docs.map(product => ({ id: product.id,...product.data()}) ) ) )
+            .catch(err => console.log(err))
+            .finally(()=> setLoading(false))
+        } else {
+           
+            getDocs(queryCollection)
+            .then(data => setProducts( data.docs.map(product => ({ id: product.id,...product.data()}) ) ) )
+            .catch(err => console.log())
+            .finally(()=> setLoading(false))   
+        }      
+   
 
     }, [id])
+
+   
     
+
+    
+
+    //ejemplo de evento
+   const handleClick=(e)=>{
+    e.preventDefault() 
+    setBool(!bool)
+}
+
+    const handleAgregar=()=>{
+        setProducts([
+            ...products,
+            { id: products.length + 1, name: "Gorra 7", url: 'https://www.remerasya.com/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/r/e/remera_negra_lisa.jpg', categoria: "remera" , price: 2 }
+        ])
+    }
+    
+    console.log(products)
+    {/*  [1,2,3,4,5] => 1 [ <li>1</li>, <li>2</li>, <li>3</li>, .... ]  */}
+
     return (
         <div >
+            
+            <button onClick={ handleClick }>Cambiar estado </button>           
+            <button onClick={handleAgregar}>Agregar Item </button>  
         
             {   loading ? 
-                    <h2>loading...</h2> 
-                :
-                   <ItemList products={products} />
+                    <Loading /> 
+                :                   
+                    <ItemList products={products} />
+                        
+                    
             }            
         
         </div>

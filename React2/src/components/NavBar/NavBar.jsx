@@ -16,21 +16,9 @@ const NavBar = ({ componente }) => {
               <NavLink className='btn btn-outline-primary' to="/category/monitores de estudio">Monitores</NavLink>
               <NavLink className='btn btn-outline-primary' to="/category/Subwoofer">Subwoofers</NavLink>
               <NavLink className='btn btn-outline-primary' to="/category/Home Theater">Home Theater</NavLink>
-              {/* <NavLink to="">Remeras</NavLink> */}
-              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                  Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                  </NavDropdown.Item>
-              </NavDropdown> */}
+              
               </Nav>
               <Nav>
-              {/* <Nav.Link href="#deets">More deets</Nav.Link> */}
               
                 <NavLink className='btn btn-outline-primary' to='/cart'>
                   <Cartwidget />
@@ -41,7 +29,6 @@ const NavBar = ({ componente }) => {
           
         
       </Navbar>
-      {/* {componente({})} */}
 
       
     </>

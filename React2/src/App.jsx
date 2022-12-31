@@ -2,17 +2,18 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 import NavBar from './components/NavBar/NavBar'
-import itemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
 import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer'
-import CartContainer from './containers/cartContainer/cartContainer.jsx'
+import ItemCount from './components/ItemCount/ItemCount'
+import CartContainer from './containers/CartContainer/CartContainer'
 
 // import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {  CartContextProvider } from './context/CartContext'
 
 
 function App() { 
     
-    let saludo = 'saludo'
+    let saludo = 'saludo' // estado
    
 
 
@@ -22,21 +23,25 @@ function App() {
             // onClick={()=> alert('soy evento de app')}    
         >
             <BrowserRouter>
-              
-                <NavBar />
+                <CartContextProvider>
+                    <NavBar />
 
-                <Routes >
-                    <Route path='/' element={ <ItemListContainer saludo={saludo}  /> } />
-                    <Route path='/category/:id' element={ <ItemListContainer saludo={saludo}  /> } />
-                    <Route path='/detail/:productId' element={<ItemDetailContainer /> } />
-                    <Route path='/cart' element={ <CartContainer /> } />
-                    {/* <Route path='/404' element={ <Componente404 /> } /> */}
-                    
-                    {/* 
-                    <CartContainer />                                     */}
-                    <Route path='*' element={<Navigate to='/' />}/>
-                </Routes>       
-                
+                    <Routes >
+                        <Route path='/' element={ <ItemListContainer saludo={saludo}  /> } />
+                        <Route path='/category/:id' element={ <ItemListContainer saludo={saludo}  /> } />
+                        <Route path='/detail/:productId' element={
+                                // <TextComponent user={true} >
+                                    <ItemDetailContainer /> 
+                                // </TextComponent>
+                            } />
+                        <Route path='/cart' element={ <CartContainer /> } />
+                        {/* <Route path='/404' element={ <Componente404 /> } /> */}
+                        
+                        {/* 
+                        <CartContainer />                                     */}
+                        <Route path='*' element={<Navigate to='/' />}/>
+                    </Routes>       
+                </CartContextProvider>               
             </BrowserRouter>
 
         </div>
@@ -45,5 +50,3 @@ function App() {
 }
 
 export default App
-
-

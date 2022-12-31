@@ -1,8 +1,27 @@
 {
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "firebase": "^9.15.0",
     "react-bootstrap": "^2.7.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5"
-  }
+  },
+  "name": "react2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegojm11/React2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegojm11/React2/issues"
+  },
+  "homepage": "https://github.com/diegojm11/React2#readme",
+  "description": ""
 }
