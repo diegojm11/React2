@@ -14,8 +14,8 @@ const NavBar = ({ componente }) => {
           <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
               <NavLink className='btn btn-outline-primary' to="/category/monitores de estudio">Monitores</NavLink>
-              <NavLink className='btn btn-outline-primary' to="/category/Subwoofer">Subwoofers</NavLink>
-              <NavLink className='btn btn-outline-primary' to="/category/Home Theater">Home Theater</NavLink>
+              <NavLink className='btn btn-outline-primary' to="/category/subwoofer">Subwoofers</NavLink>
+              <NavLink className='btn btn-outline-primary' to="/category/home theater">Home Theater</NavLink>
               
               </Nav>
               <Nav>
