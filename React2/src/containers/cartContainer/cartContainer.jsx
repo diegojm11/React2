@@ -14,14 +14,9 @@ const CartContainer = () => {
   console.log(cartList)
 
 
-  // Descripción de la actividad
-  // Usa tu tus ítems del cart para modelar tu orden al siguiente formato:
-  // { buyer: { name, phone, email }, items: [ {id, title, price} ] , total  }, si todavía no creaste el formulario de compra puedes usar un objeto hardcodeado de tipo { name, phone, email }. 
-  
 
   const addOrder = (e) => {
     e.preventDefault()
-    // armar la orden de un formulario
     const order = {}
     order.buyer = dataForm
     order.price = precioTotal()
@@ -30,44 +25,49 @@ const CartContainer = () => {
     const db = getFirestore()
     const queryCollection = collection(db, 'orders')
 
-    // muchas ordenes 
-
-    // productos.forEach(async prod => {
-    //   await addDoc()
-    // });
     
+       const name = dataForm.name
+       const email = dataForm.email
+       const phone = dataForm.phone
+ 
+       console.log("name" + name)
+       console.log("email" + email)
+       console.log("phone" + phone)
+
+       if (name.length == 0 )
+       { return alert ("agregar nombre")
+       }
+
+     if ( email.length == 0 )
+       { return alert ("agregar email ")
+       }
+    if (  !email.includes("@") )
+       { return alert ("formato email")
+       }
+    if ( phone.length == 0)
+       { return alert ("telefono")
+       }
+     
+    
+      
+
+
     addDoc(queryCollection, order)
-    .then(resp => console.log(resp))
-    .catch(err => console.log(err))
+    .then(resp => alert('la orden de compra generada es: ' + resp._key.path.segments[1]))
+    .catch(err => alert('error: ' + err))
     .finally(() => vaciarCarrito())
-
-
-    // update 
-    // const queryDoc = doc(db, 'productos', 'LZgs8H5DuqMOdTwQKxRp')
-    // updateDoc(queryDoc, {
-    //   stock: 100
-    // })
-
-    // borrado lógico
-    // const queryDoc = doc(db, 'productos', 'LZgs8H5DuqMOdTwQKxRp')
-    // updateDoc(queryDoc, {
-    //   isActive: false
-    // })
 
 
     console.log('se actualizo')
   }
 
   const handleOnChange = (e) => {
-    // console.log('npmbre del input: ',e.target.name)
-    // console.log('valor del input',e.target.value)
     setFormData( {
       ...dataForm,
       [e.target.name]: e.target.value
     } )
   }
-  console.log(dataForm)
-
+  
   return (
     <div>
       { cartList.length !== 0 ? 

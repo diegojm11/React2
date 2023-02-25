@@ -2,9 +2,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { Cartwidget } from '../Cartwidget/Cartwidget'
 
-// import 
+ 
 const NavBar = ({ componente }) => {
-  // console.log(children)
+  
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

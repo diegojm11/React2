@@ -7,15 +7,13 @@ import Loading from "../../components/Loading/Loading"
 import { doc, getDoc, getFirestore } from "firebase/firestore"
 
 
-// funcioón 
 
 const ItemDetailContainer = () => {
     const [ product, setProduct ] = useState({})
     const [ loading, setLoading ] = useState(true)
 
     const { productId } = useParams()
-    // console.log(productId)
-
+  
     useEffect(()=>{        
         const db = getFirestore()
         const queryDoc = doc(db, 'productos',  productId)
@@ -29,7 +27,7 @@ const ItemDetailContainer = () => {
         <>
             {loading ? <Loading /> : <ItemDetail product={product}/>}
             
-            {/* <TextComponent7/> */}
+            {}
 
         </>
     )

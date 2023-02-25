@@ -6,11 +6,9 @@ import Loading from '../../components/Loading/Loading'
 import { gFetch } from '../../helpers/gFetch'
 
 
-// acciones  api -> resultado (asincrónico)
 
 
-
-const ItemListContainer = ( { saludo = 'saludo por defecto' } ) => { // componente 
+const ItemListContainer = ( { saludo = 'saludo por defecto' } ) => { 
     
     const [bool, setBool] = useState(true)
     const [ products, setProducts ] = useState([])

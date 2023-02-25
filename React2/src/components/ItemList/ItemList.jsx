@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import Item from '../Item/Item'
 
-// memo(componente, funcion comparadora)
 const ItemList = memo( ({ products }) => {
         console.log('itemList')
         
