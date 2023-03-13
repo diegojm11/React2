@@ -7,9 +7,9 @@ import ItemCount from './components/ItemCount/ItemCount'
 import CartContainer from './containers/CartContainer/CartContainer'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  CartContextProvider } from './context/CartContext'
-
-
+import {  CartContextProvider } from './context/CartContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() { 
     
     let saludo = 'saludo' 

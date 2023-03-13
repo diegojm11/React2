@@ -2,7 +2,8 @@ import { addDoc, collection, doc, getFirestore, updateDoc } from "firebase/fires
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../context/CartContext"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartContainer = () => {
   const [ dataForm, setFormData ] =  useState({
@@ -35,17 +36,19 @@ const CartContainer = () => {
        console.log("phone" + phone)
 
        if (name.length == 0 )
-       { return alert ("agregar nombre")
+       { return toast.error('agregar nombre',{position: toast.POSITION.TOP_RIGHT})
+         
+       
        }
 
      if ( email.length == 0 )
-       { return alert ("agregar email ")
+       { return toast.error('agregar email',{position: toast.POSITION.TOP_RIGHT})
        }
     if (  !email.includes("@") )
-       { return alert ("formato email")
+       { return toast.error('formato incorrecto email',{position: toast.POSITION.TOP_RIGHT})
        }
     if ( phone.length == 0)
-       { return alert ("telefono")
+       { return toast.error('agregar telefono',{position: toast.POSITION.TOP_RIGHT})
        }
      
     
@@ -122,7 +125,9 @@ const CartContainer = () => {
           <Link to= '/' > Ir home </Link>
         </>
 }
+  <ToastContainer/>
     </div>
+
   )
 }
 
